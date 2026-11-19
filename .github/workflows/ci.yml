@@ -1,0 +1,33 @@
+name: CI
+
+# Cuándo se ejecuta: en cada Pull Request y cuando algo llega a main
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+# Seguridad: el flujo solo puede leer el repositorio, nada más
+permissions:
+  contents: read
+
+jobs:
+  calidad:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Instalar dependencias
+        run: python -m pip install -e ".[dev]"
+
+      - name: Revisar codigo con ruff
+        run: python -m ruff check .
+
+      - name: Revisar formato con ruff
+        run: python -m ruff format --check .
+
+      - name: Correr pruebas
+        run: python -m pytest
