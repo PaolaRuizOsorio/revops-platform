@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "revops-platform"
+version = "0.1.0"
+description = "Plataforma de integracion entre Salesforce y Python"
+requires-python = ">=3.12"
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=9.0", "ruff>=0.17"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "S"]
+
+# Reglas de ruff:
+# E	Errores de estilo (PEP 8)
+# F	Errores lógicos (variables sin usar, imports rotos)
+# I	Orden de los imports
+# B	Errores comunes y trampas de diseño
+# UP	Uso de sintaxis moderna de Python
+# S	Seguridad
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+# no aplique esa regla solo en la carpeta de pruebas
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S101"]  
