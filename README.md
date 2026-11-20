@@ -1,4 +1,4 @@
-# RevOps Platform
+# salesbridge Platform
 Plataforma de integración entre Salesforce y Python: sincronización segura por API, arquitectura limpia y CI/CD.
 
 ## Estado
